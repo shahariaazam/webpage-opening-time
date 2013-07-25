@@ -1,7 +1,10 @@
 <html>
 <head>
-    <title>Webpage Open in a specific time</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <title>Countdown Timer for Foysal</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+
+    </script>
     <script type="text/javascript">
         /**
          * @Author  G. M. Shaharia Azam
@@ -18,8 +21,8 @@
             var dateM = 07; // Month of opening
             var dateY = 2013;   // year of opening
             var dateG = 25; // date of opening
-            var dateD = 06; // hour of opening
-            var dateMi = 22;    // minutes of opening
+            var dateD = 15; // hour of opening
+            var dateMi = 35;    // minutes of opening
             var dateS = 00; // Seconds of opening
 
             var currentdate = new Date();
@@ -50,16 +53,49 @@
     <script>
         jQuery(document).ready(function () {
             var match = CountDownTimer();
-            console.log(match);
             if (match == 1) {
                 jQuery('#content').show();
             } else {
                 jQuery('#content').hide();
+                RunCountDown('07/25/2013 03:35 PM', 'runCount');      // Also please change the time here about when your site will open
+                function RunCountDown(dt, id) {
+                    var end = new Date(dt);
+
+                    var _second = 1000;
+                    var _minute = _second * 60;
+                    var _hour = _minute * 60;
+                    var _day = _hour * 24;
+                    var timer;
+
+                    function showRemaining() {
+                        var now = new Date();
+                        var distance = end - now;
+                        console.log = end;
+                        if (distance < 0) {
+                            clearInterval(timer);
+                            document.location.reload();
+                            return;
+                        } else {
+                            var days = Math.floor(distance / _day);
+                            var hours = Math.floor((distance % _day) / _hour);
+                            var minutes = Math.floor((distance % _hour) / _minute);
+                            var seconds = Math.floor((distance % _minute) / _second);
+
+                            document.getElementById(id).innerHTML = days + 'days ';
+                            document.getElementById(id).innerHTML += hours + 'hrs ';
+                            document.getElementById(id).innerHTML += minutes + 'mins ';
+                            document.getElementById(id).innerHTML += seconds + 'secs';
+                        }
+                    }
+
+                    timer = setInterval(showRemaining, 1000);
+                }
             }
         });
     </script>
 </head>
 <body>
+<div id="runCount"></div>
 <div id="content" style="display: none;">
     Your whole content. this content will be open in your opening time you gave already.
 </div>
