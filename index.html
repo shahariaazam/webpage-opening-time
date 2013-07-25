@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Countdown Timer for Foysal</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        /**
+         * @Author  G. M. Shaharia Azam
+         * @URL http://www.shahariaazam.com
+         * @Description To display the page content when you want to display them. It will be used for enabling your site
+         * when you want. Suppose you want to open your site on 28 july 2013. Just put your expected date variables in each
+         * line given below with comment. Then just upload it to server and you will see nothing. When times will be up then your
+         * content will be shown up.
+         * There is no CSS for 'content' id. But whole your code will be placed there.
+         * @License Open source licensing under MIT license.
+         */
+        CountDownTimer();
+        function CountDownTimer() {
+            var dateM = 07; // Month of opening
+            var dateY = 2013;   // year of opening
+            var dateG = 25; // date of opening
+            var dateD = 06; // hour of opening
+            var dateMi = 22;    // minutes of opening
+            var dateS = 00; // Seconds of opening
+
+            var currentdate = new Date();
+            var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                    + (currentdate.getMonth() + 1) + "/"
+                    + currentdate.getFullYear() + " @ "
+                    + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
+            if (dateY <= currentdate.getFullYear()) {
+                if (dateM <= currentdate.getMonth() + 1) {
+                    if (dateG <= currentdate.getDate()) {
+                        if (dateD <= currentdate.getHours() + 1) {
+                            if (dateMi <= currentdate.getMinutes()) {
+                                if (dateS <= currentdate.getSeconds()) {
+                                    return matched = 1;
+                                } else {
+                                    return matched = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return matched = 0;
+        }
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+            var match = CountDownTimer();
+            console.log(match);
+            if (match == 1) {
+                jQuery('#content').show();
+            } else {
+                jQuery('#content').hide();
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="content" style="display: none;">
+    Your whole content. this content will be open in your opening time you gave already.
+</div>
+</body>
+</html>
